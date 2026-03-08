@@ -1,5 +1,6 @@
 /**
- * Vite config: proxy /api to backend so React API calls hit http://localhost:5000
+ * Vite config: proxy /api to backend so React API calls hit the API server.
+ * Local dev: proxy to http://localhost:5000 (run server with npm run dev in server/).
  */
 import { defineConfig } from "vite";
 import react from "@vitejs/plugin-react";
@@ -9,7 +10,7 @@ export default defineConfig({
   server: {
     proxy: {
       "/api": {
-        target: "https://task-manager-ai-assignment-6lqr.onrender.com",
+        target: "http://localhost:5000",
         changeOrigin: true,
       },
     },

@@ -3,6 +3,7 @@
  * Renders TaskItem for each task.
  */
 import { useState, useEffect, useCallback } from "react";
+import { API_BASE } from "../api/config.js";
 import TaskItem from "./TaskItem.jsx";
 import TaskForm from "./TaskForm.jsx";
 import TaskFilter from "./TaskFilter.jsx";
@@ -17,7 +18,7 @@ export default function TaskList() {
   const fetchTasks = useCallback(async () => {
     try {
       setError("");
-      const res = await fetch("/api/tasks");
+      const res = await fetch(`${API_BASE}/api/tasks`);
       if (!res.ok) throw new Error("Failed to load tasks");
       const data = await res.json();
       setTasks(Array.isArray(data) ? data : []);

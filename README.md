@@ -55,4 +55,21 @@ Use two terminals: start the API first, then the frontend.
 
 Task shape: `{ id (UUID), title, priority: "low"|"medium"|"high", completed: boolean }`.
 
+---
+
+## Deploy backend to Render
+
+1. Push the repo to GitHub and connect it in [Render](https://render.com).
+2. Create a **Web Service**, set **Root Directory** to `server`, **Build** to `npm install`, **Start** to `npm start`.
+3. (Optional) Add env var **CLIENT_ORIGIN** = your frontend URL (e.g. `https://your-frontend.onrender.com`) so CORS allows it.
+4. Backend URL will be like: `https://task-manager-ai-assignment-6lqr.onrender.com`.
+
+## Use deployed backend in the frontend
+
+For production builds, the frontend must call the deployed API URL. Set this when building or in Render (for the frontend service):
+
+- **VITE_API_URL** = `https://task-manager-ai-assignment-6lqr.onrender.com`
+
+Example: copy `client/.env.example` to `client/.env` and set `VITE_API_URL` to the backend URL, then run `npm run build` in `client/`. Or in Render’s frontend service, add **VITE_API_URL** in the environment and use the same value.
+
 

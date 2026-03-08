@@ -3,6 +3,7 @@
  * Validates and submits via POST /api/tasks.
  */
 import { useState } from "react";
+import { API_BASE } from "../api/config.js";
 
 const PRIORITIES = [
   { value: "low", label: "Low" },
@@ -26,7 +27,7 @@ export default function TaskForm({ onAdded }) {
     setError("");
     setSubmitting(true);
     try {
-      const res = await fetch("/api/tasks", {
+      const res = await fetch(`${API_BASE}/api/tasks`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ title: trimmed, priority }),

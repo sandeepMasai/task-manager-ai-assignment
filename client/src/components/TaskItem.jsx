@@ -2,12 +2,14 @@
  * Single task row: title, priority badge, completed state, complete + delete actions.
  * Surfaces errors via onError instead of console.
  */
+import { API_BASE } from "../api/config.js";
+
 export default function TaskItem({ task, onToggle, onDelete, onError }) {
   const { id, title, priority, completed } = task;
 
   async function handleToggle() {
     try {
-      const res = await fetch(`/api/tasks/${id}`, {
+      const res = await fetch(`${API_BASE}/api/tasks/${id}`, {
         method: "PATCH",
       });
       if (res.ok) {
@@ -24,7 +26,7 @@ export default function TaskItem({ task, onToggle, onDelete, onError }) {
 
   async function handleDelete() {
     try {
-      const res = await fetch(`/api/tasks/${id}`, { method: "DELETE" });
+      const res = await fetch(`${API_BASE}/api/tasks/${id}`, { method: "DELETE" });
       if (res.ok) {
         onDelete?.(id);
       } else {

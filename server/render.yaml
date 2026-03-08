@@ -1,0 +1,13 @@
+# Render Blueprint: deploy the backend as a Web Service
+# https://render.com/docs/blueprint-spec
+services:
+  - type: web
+    name: task-manager-api
+    runtime: node
+    rootDir: server
+    buildCommand: npm install
+    startCommand: npm start
+    envVars:
+      - key: NODE_ENV
+        value: production
+      # Add CLIENT_ORIGIN in Render dashboard = your frontend URL (e.g. https://your-frontend.onrender.com)
