@@ -2,6 +2,8 @@
 
 Full-stack Task Manager: Express API + React (Vite) frontend with in-memory storage.
 
+**Live:** [Frontend](https://task-manager-ai-assignment-1-swur.onrender.com/) · [API](https://task-manager-ai-assignment-6lqr.onrender.com/health)
+
 ## Folder structure
 
 ```

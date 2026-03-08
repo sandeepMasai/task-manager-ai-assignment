@@ -13,7 +13,13 @@ const allowedOrigins = [
   "https://task-manager-ai-assignment-1-swur.onrender.com",
   process.env.CLIENT_ORIGIN,
 ].filter(Boolean);
-app.use(cors({ origin: allowedOrigins }));
+app.use(
+  cors({
+    origin: allowedOrigins,
+    methods: ["GET", "POST", "PATCH", "DELETE", "OPTIONS"],
+    allowedHeaders: ["Content-Type"],
+  })
+);
 
 app.get("/api/tasks", taskRoutes.getAll);
 app.post("/api/tasks", taskRoutes.create);

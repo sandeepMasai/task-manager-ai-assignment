@@ -15,7 +15,7 @@ export default function TaskList() {
   const [filter, setFilter] = useState("all");
   const [actionError, setActionError] = useState("");
 
-  const fetchTasks = useCallback(async () => {
+  const fetchTasks = useCallback(async (retry = false) => {
     try {
       setError("");
       const res = await fetch(`${API_BASE}/api/tasks`);
@@ -23,7 +23,12 @@ export default function TaskList() {
       const data = await res.json();
       setTasks(Array.isArray(data) ? data : []);
     } catch (err) {
-      setError(err.message || "Could not load tasks");
+      if (!retry && API_BASE) {
+        // One retry after 3s (helps when backend is cold-starting on Render)
+        setTimeout(() => fetchTasks(true), 3000);
+        return;
+      }
+      setError(err.message || "Could not load tasks. Check the API is running.");
       setTasks([]);
     } finally {
       setLoading(false);
